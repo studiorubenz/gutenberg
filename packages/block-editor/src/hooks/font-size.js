@@ -5,7 +5,6 @@ import { addFilter } from '@wordpress/hooks';
 import { hasBlockSupport } from '@wordpress/blocks';
 import TokenList from '@wordpress/token-list';
 import { createHigherOrderComponent } from '@wordpress/compose';
-import { useCallback } from '@wordpress/element';
 
 /**
  * Internal dependencies
@@ -106,24 +105,20 @@ export function FontSizeEdit( props ) {
 	const isDisabled = useIsFontSizeDisabled( props );
 	const fontSizes = useEditorFeature( 'typography.fontSizes' );
 
-	const onChange = useCallback(
-		( value ) => {
-			const fontSizeSlug = getFontSizeObjectByValue( fontSizes, value )
-				.slug;
+	const onChange = ( value ) => {
+		const fontSizeSlug = getFontSizeObjectByValue( fontSizes, value ).slug;
 
-			setAttributes( {
-				style: cleanEmptyObject( {
-					...style,
-					typography: {
-						...style?.typography,
-						fontSize: fontSizeSlug ? undefined : value,
-					},
-				} ),
-				fontSize: fontSizeSlug,
-			} );
-		},
-		[ setAttributes ]
-	);
+		setAttributes( {
+			style: cleanEmptyObject( {
+				...style,
+				typography: {
+					...style?.typography,
+					fontSize: fontSizeSlug ? undefined : value,
+				},
+			} ),
+			fontSize: fontSizeSlug,
+		} );
+	};
 
 	if ( isDisabled ) {
 		return null;
@@ -138,13 +133,7 @@ export function FontSizeEdit( props ) {
 	const fontSizeValue =
 		fontSizeObject?.size || style?.typography?.fontSize || fontSize;
 
-	return (
-		<FontSizePicker
-			__unstableVersion="next"
-			onChange={ onChange }
-			value={ fontSizeValue }
-		/>
-	);
+	return <FontSizePicker onChange={ onChange } value={ fontSizeValue } />;
 }
 
 /**
