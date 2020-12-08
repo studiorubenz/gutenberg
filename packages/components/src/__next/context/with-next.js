@@ -1,7 +1,7 @@
 /**
- * Internal dependencies
+ * External dependencies
  */
-import { contextConnect, useContextSystem } from './context-system';
+import { contextConnect, useContextSystem } from '@wp-g2/components';
 
 export function withNext(
 	CurrentComponent = () => null,
@@ -9,19 +9,23 @@ export function withNext(
 	namespace = 'Component',
 	adapter = ( p ) => p
 ) {
-	const WrappedComponent = ( props, ref ) => {
-		const { __unstableVersion, ...otherProps } = useContextSystem(
-			props,
-			namespace
-		);
+	if ( process.env.COMPONENT_SYSTEM_PHASE === 1 ) {
+		const WrappedComponent = ( props, ref ) => {
+			const { __unstableVersion, ...otherProps } = useContextSystem(
+				props,
+				namespace
+			);
 
-		if ( __unstableVersion === 'next' ) {
-			const nextProps = adapter( otherProps );
-			return <NextComponent { ...nextProps } ref={ ref } />;
-		}
+			if ( __unstableVersion === 'next' ) {
+				const nextProps = adapter( otherProps );
+				return <NextComponent { ...nextProps } ref={ ref } />;
+			}
 
-		return <CurrentComponent { ...props } ref={ ref } />;
-	};
+			return <CurrentComponent { ...props } ref={ ref } />;
+		};
 
-	return contextConnect( WrappedComponent, namespace );
+		return contextConnect( WrappedComponent, namespace );
+	}
+
+	return CurrentComponent;
 }
