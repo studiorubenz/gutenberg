@@ -2,6 +2,10 @@
  * External dependencies
  */
 import { contextConnect, useContextSystem } from '@wp-g2/components';
+/**
+ * WordPress dependencies
+ */
+import { forwardRef } from '@wordpress/element';
 
 export function withNext(
 	CurrentComponent = () => null,
@@ -27,5 +31,5 @@ export function withNext(
 		return contextConnect( WrappedComponent, namespace );
 	}
 
-	return CurrentComponent;
+	return forwardRef( CurrentComponent );
 }
