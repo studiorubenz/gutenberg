@@ -2,6 +2,9 @@
  * WordPress dependencies
  */
 import { hasBlockSupport } from '@wordpress/blocks';
+/**
+ * External dependencies
+ */
 import {
 	PanelBody,
 	__unstableComponentSystemProvider as ComponentSystemProvider,
