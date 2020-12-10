@@ -20,5 +20,9 @@ const FontSizePicker = ( props, ref ) => {
 };
 
 export function withNextComponent( current ) {
-	return withNext( current, FontSizePicker, 'WPComponentsFontSizePicker' );
+	return withNext(
+		current,
+		process.env.COMPONENT_SYSTEM_PHASE === 1 ? FontSizePicker : undefined,
+		'WPComponentsFontSizePicker'
+	);
 }
