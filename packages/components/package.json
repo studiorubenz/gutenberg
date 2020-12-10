@@ -26,7 +26,7 @@
 		"src/**/*.scss"
 	],
 	"dependencies": {
-		"@babel/runtime": "^7.11.2",
+		"@babel/runtime": "^7.12.5",
 		"@emotion/core": "^10.0.22",
 		"@emotion/css": "^10.0.22",
 		"@emotion/native": "^10.0.22",
@@ -61,7 +61,7 @@
 		"react-merge-refs": "^1.0.0",
 		"react-resize-aware": "^3.0.1",
 		"react-spring": "^8.0.20",
-		"react-use-gesture": "^7.0.15",
+		"react-use-gesture": "^7.0.16",
 		"reakit": "^1.1.0",
 		"rememo": "^3.0.0",
 		"tinycolor2": "^1.4.1",
