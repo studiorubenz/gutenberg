@@ -102,7 +102,7 @@ module.exports = {
 				parseInt(
 					process.env.npm_package_config_COMPONENT_SYSTEM_PHASE,
 					10
-				) || 0
+				) || 1
 			),
 			'process.env.FORCE_REDUCED_MOTION': JSON.stringify(
 				process.env.FORCE_REDUCED_MOTION
